@@ -1,12 +1,12 @@
 const {use} = require("express/lib/router");
-const user = require("../controller/sensor-data.controller");
+const user = require("../controller/notification.controller");
 module.exports = app => {
-    const post = require("../controller/sensor-data.controller");
+    const post = require("../controller/notification.controller");
 
     let router = require("express").Router();
 
     // Create a new post
-    // router.post("/", post.create);
+    router.post("/", post.create);
 
     // Retrieve all posts
     router.get("/", post.findAll);

@@ -17,16 +17,19 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 // app.use(fileUpload());
 
-const sensorDataSubscriber = require("./app/subscriber/sensor-data.subscriber")
-sensorDataSubscriber.connectToBroker();
-sensorDataSubscriber.subscribeToTopic("sensor-data");
+// const sensorDataSubscriber = require("./app/subscriber/sensor-data.subscriber")
+// sensorDataSubscriber.connectToBroker();
+// sensorDataSubscriber.subscribeToTopic("sensor-data");
 
 const db = require("./app/model");
+
+
 db.mongoose
-    .connect("mongodb://127.0.0.1:27017/test_db", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
+    .connect(db.url,
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
     .then(() => {
         console.log("Connected to the database!");
     })
@@ -40,7 +43,7 @@ app.get("/", (req, res) => {
     res.json({message: "Welcome to modjoul backend application."});
 });
 
-require("./app/routes/sensor-data.route")(app);
+require("./app/routes/notification.route")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8083;

@@ -4,7 +4,9 @@ module.exports = mongoose => {
             temperature: String,
             humidity: String,
             time: String,
-            device_id: String
+            device_id: String,
+            type: String,
+
         },
         {timestamps: true}
     );
@@ -15,6 +17,6 @@ module.exports = mongoose => {
         return object;
     });
 
-    const SensorData = mongoose.model("sensor_data", schema);
-    return SensorData;
+    const Notification = mongoose.model("notification", schema);
+    return Notification;
 };

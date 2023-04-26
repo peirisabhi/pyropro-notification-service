@@ -1,5 +1,5 @@
 const db = require("../model")
-const SensorData = db.sensorData;
+const Notification = db.notification;
 
 exports.create = (data) => {
 
@@ -7,7 +7,7 @@ exports.create = (data) => {
 
 
     // Create a SensorData
-    const sensorData = new SensorData({
+    const notification = new Notification({
         temperature: data.temperature,
         humidity: data.humidity,
         time: data.time,
@@ -17,7 +17,7 @@ exports.create = (data) => {
 
     // Save User in the database
 
-    sensorData
+    notification
         .save()
         .then(data => {
             console.log("saved ")
