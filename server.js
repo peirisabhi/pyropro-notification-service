@@ -1,6 +1,6 @@
 const express = require("express");
-// const fileUpload = require("express-fileupload");
 const cors = require("cors");
+let consumer = require("./app/consumer/mq.consumer");
 
 const app = express();
 
@@ -15,7 +15,6 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));
-// app.use(fileUpload());
 
 // const sensorDataSubscriber = require("./app/subscriber/sensor-data.subscriber")
 // sensorDataSubscriber.connectToBroker();
@@ -38,6 +37,8 @@ db.mongoose
         process.exit();
     });
 
+consumer.consumeMessages();
+
 // simple routes
 app.get("/", (req, res) => {
     res.json({message: "Welcome to modjoul backend application."});
@@ -46,7 +47,7 @@ app.get("/", (req, res) => {
 require("./app/routes/notification.route")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8083;
+const PORT = process.env.PORT || 8084;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
