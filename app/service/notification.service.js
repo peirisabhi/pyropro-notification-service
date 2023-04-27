@@ -3,10 +3,7 @@ const Notification = db.notification;
 
 exports.create = (data) => {
 
-    console.log(data)
-
-
-    // Create a SensorData
+    // Create a notification
     const notification = new Notification({
         temperature: data.temperature,
         humidity: data.humidity,
@@ -14,27 +11,12 @@ exports.create = (data) => {
         device_id: data.device_id
     });
 
-
-    // Save User in the database
-
     notification
         .save()
         .then(data => {
-            console.log("saved ")
+            console.log("saved " + data)
         })
         .catch(err => {
-            console.log("error")
+            console.log(err.message)
         })
-
-    // post
-    //     .save(post)
-    //     .then(data => {
-    //         res.send(data);
-    //     })
-    //     .catch(err => {
-    //         res.status(500).send({
-    //             message:
-    //                 err.message || "Some error occurred while creating the post."
-    //         });
-    //     });
 };

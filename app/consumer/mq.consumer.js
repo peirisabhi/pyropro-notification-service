@@ -1,5 +1,6 @@
 const amqp = require("amqplib");
 const mqConfig = require("../config/mq.config");
+let notificationService = require("../service/notification.service");
 
 exports.consumeMessages = async () => {
     console.log()
@@ -15,6 +16,7 @@ exports.consumeMessages = async () => {
     channel.consume(q.queue, (msg) => {
         const data = JSON.parse(msg.content);
         console.log(data);
+        notificationService.create(data)
         channel.ack(msg);
     });
 }
