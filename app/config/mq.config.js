@@ -3,6 +3,7 @@ module.exports = {
         url: "amqp://localhost",
         exchangeName: "pyropro",
         queueName: "PyroproNotificationQueue",
-        notificationRoutingKey: "pyropro.notification",
+        // notificationRoutingKey: "pyropro.notification",
+        notificationRoutingKey: "PyroproNotificationQueue",
     },
 };
