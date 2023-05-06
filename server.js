@@ -5,7 +5,7 @@ let consumer = require("./app/consumer/mq.consumer");
 const app = express();
 
 var corsOptions = {
-    origin: "http://localhost:4201"
+    origin: "http://localhost:4200"
 };
 
 app.use(cors(corsOptions));
@@ -41,7 +41,7 @@ consumer.consumeMessages();
 
 // simple routes
 app.get("/", (req, res) => {
-    res.json({message: "Welcome to modjoul backend application."});
+    res.json({message: "Welcome to pyropro notification service."});
 });
 
 require("./app/routes/notification.route")(app);

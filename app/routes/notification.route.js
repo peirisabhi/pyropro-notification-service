@@ -1,15 +1,15 @@
 const {use} = require("express/lib/router");
 const user = require("../controller/notification.controller");
 module.exports = app => {
-    const post = require("../controller/notification.controller");
+    const notification = require("../controller/notification.controller");
 
     let router = require("express").Router();
 
     // Create a new post
-    router.post("/", post.create);
+    router.post("/detections", notification.findAllFireDetections);
 
     // Retrieve all posts
-    router.get("/", post.findAll);
+    router.post("/predictions", notification.findAllFirePredictions);
 
     // Retrieve a single post with id
     // router.get("/:id", post.findOne);
